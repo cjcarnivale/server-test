@@ -5,14 +5,14 @@ const express = require('express');
 const app = express();
 const bodyParser = express.json();  
 
-let data = {name: 'Chris'}; 
+let data = [{name: 'Chris'}]; 
 
 app.get('/', (req, res, next) => {
   res.status(200).json(data).end(); 
 }); 
 
 app.post('/', bodyParser, (req, res, next) => { 
-  data = {...data, name: req.body.name};
+  data.push({name: req.body.name}); 
   res.status(201).json(req.body.name).end();  
 });
 
